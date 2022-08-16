@@ -18,6 +18,35 @@ public class Employee_Payroll
             Statement stmt = conn.createStatement();
             System.out.println("Connection successful :-"+conn);
 
+
+            System.out.println("You want Update Some Records");
+            String upa_sta = d.readLine();
+
+            if( upa_sta.equals("yes"))
+            {
+                System.out.println("How Many Rows You Want Update ? ");
+                int upa_num = Integer.parseInt(d.readLine());
+                for(int y = 0;y < upa_num;y++)
+                {
+                    System.out.println("Enter You Want Update Salary ");
+                    double salary = Integer.parseInt( d.readLine());
+
+                    System.out.println("Enter You Want that update Name    ");
+                    String up_name = d.readLine();
+
+                    String update = "update  employee_payroll   set salary  = "+salary+"  where name = '" +up_name+"';";
+                    stmt.executeUpdate(update);
+                    System.out.println("Update Record Successfully");
+                }
+
+            }
+            else if(upa_sta.equals("no"))
+            {
+                System.out.println("Ok Darsh....");
+
+
+            }
+
             System.out.println("Enter Table Name ");
             String table = d.readLine();
             String sql = "select * from "+table+";";
