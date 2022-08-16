@@ -22,17 +22,21 @@ public class Employee_Payroll
             String table = d.readLine();
             String sql = "select * from "+table+";";
             ResultSet rs = stmt.executeQuery(sql);
-            System.out.println("Id   E_name   E_age   E_Salary    E_city");
+            System.out.println("E_name     E_Address        E_City        E-State         E_Phone             Email                         E_Salary ");
             System.out.println("-----------------------------");
             while (rs.next())
             {
-                int eid = rs.getInt("Id");
-                String ename = rs.getString("Name");
-                int eage = rs.getInt("Age");
-                Double esalary = rs.getDouble("Salary");
-                String ecity = rs.getString("City");
+                String ename = rs.getString("name");
+                String eAddress = rs.getString("address");
+                String ecity = rs.getString("city");
+                String estate = rs.getString("state");
+                String email = rs.getString("email");
+                double ephone = rs.getDouble("phone_number");
+                int esalary = rs.getInt("salary");
 
-                System.out.println(+eid+"   "+ename+"   "+eage+"   " +esalary+  "    " +ecity   );
+
+                System.out.println(ename+   "        " +eAddress+  "         "   +ecity+  "      "+estate+  "         "+ephone+  "       "
+                           +email+"              " +esalary   );
             }
             System.out.println("-----------------------------");
             System.out.println("Display Table  Successfully");
