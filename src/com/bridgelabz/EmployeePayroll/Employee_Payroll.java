@@ -3,10 +3,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.sql.*;
 
+import static com.bridgelabz.EmployeePayroll.TestCustomException.validate;
+
 public class Employee_Payroll
 {
-    public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException, SQL_Exception {
-
+    public static void main(String[] args) throws SQLException, IOException, SQL_Exception, ClassNotFoundException
+    {
+        try{
             System.out.println("----------SQL Operations------------");
             Class.forName("com.mysql.cj.jdbc.Driver");
             DataInputStream d = new DataInputStream(System.in);
@@ -14,6 +17,7 @@ public class Employee_Payroll
             String username = "root";
             String password = "yuktadarsh";
             Connection conn = DriverManager.getConnection(dbURL,username,password);
+
             Statement stmt = conn.createStatement();
             System.out.println("Connection successful :-"+conn);
 
@@ -36,9 +40,15 @@ public class Employee_Payroll
             System.out.println("-----------------------------");
             System.out.println("Display Table  Successfully");
             System.out.println("-----------------------------");
+            validate();
             System.exit(0);
+        }catch (SQL_Exception e)
+        {
+            System.out.println("Caught the exception");
+            System.out.println("Exception occured: " + e);
+        }
 
-        throw new SQL_Exception("not valid to vote SQL Exception Occure");
+
 
     }
 
