@@ -65,11 +65,11 @@ public class Employee_Payroll
 
                 for(int j = 0;j < del_num;j++)
                 {
-                    System.out.println("Enter delete  ID you want to delete ");
+                    System.out.println("Enter delete Employee  ID you want to delete ");
                     int del_id = Integer.parseInt(d.readLine());
                     String delete = " delete from Employees where Id  = "+del_id+"";
                     stmt.executeUpdate(delete);
-                    System.out.println("Delete Record Successfully");
+                    System.out.println("Delete Employee Record Successfully");
                 }
             }
             else if(del_sta.equals("no"))
