@@ -1,13 +1,12 @@
 package com.bridgelabz.EmployeePayroll;
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.sql.*;
 
 public class Employee_Payroll
 {
-    public static void main(String[] args)
-    {
-        try
-        {
+    public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException, SQL_Exception {
+
             System.out.println("----------SQL Operations------------");
             Class.forName("com.mysql.cj.jdbc.Driver");
             DataInputStream d = new DataInputStream(System.in);
@@ -38,11 +37,8 @@ public class Employee_Payroll
             System.out.println("Display Table  Successfully");
             System.out.println("-----------------------------");
             System.exit(0);
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+
+        throw new SQL_Exception("not valid to vote SQL Exception Occure");
 
     }
 
