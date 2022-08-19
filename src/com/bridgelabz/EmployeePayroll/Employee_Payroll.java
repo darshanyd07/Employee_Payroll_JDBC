@@ -1,10 +1,13 @@
 package com.bridgelabz.EmployeePayroll;
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.sql.*;
+
+import static com.bridgelabz.EmployeePayroll.TestCustomException.validate;
 
 public class Employee_Payroll
 {
-    public static void main(String[] args)
+    public static void main(String[] args)throws SQLException, IOException, SQL_Exception, ClassNotFoundException
     {
         try
         {
@@ -70,11 +73,13 @@ public class Employee_Payroll
             System.out.println("-----------------------------");
             System.out.println("Display Table  Successfully");
             System.out.println("-----------------------------");
+            validate();
             System.exit(0);
         }
-        catch (Exception e)
+        catch (SQL_Exception e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Caught the exception");
+            System.out.println("Exception occured: " + e);
         }
 
     }
