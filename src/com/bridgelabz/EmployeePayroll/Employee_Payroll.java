@@ -1,6 +1,8 @@
 package com.bridgelabz.EmployeePayroll;
 import java.sql.*;
 
+import static com.bridgelabz.EmployeePayroll.TestCustomException.validate;
+
 public class Employee_Payroll
 {
     public static void main(String[] args) {
@@ -22,10 +24,12 @@ public class Employee_Payroll
                 System.out.print("\t\t" + rst.getString(2));
                 System.out.print("\t\t" + rst.getString(3));
                 System.out.println("\t\t" + rst.getString(4));
+                validate ();
             }
-        } catch (Exception e)
+        } catch (SQL_Exception | SQLException e)
         {
-            System.out.println(e);
+            System.out.println("Caught the exception");
+            System.out.println("Exception occured: " + e);
         }
     }
 }
