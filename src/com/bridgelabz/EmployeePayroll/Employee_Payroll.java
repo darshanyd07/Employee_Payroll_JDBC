@@ -43,6 +43,11 @@ public class Employee_Payroll
                     System.out.println("Enter Phone Number");
                     int phone = Integer.parseInt(d.readLine());
 
+                    System.out.println("Setting the AutoCommit value as FALSE");
+                    conn.setAutoCommit(false);
+                    boolean autoCommit = conn.getAutoCommit();
+                    System.out.println("AutoCommit value of the Connection = "+ autoCommit);
+
                     String inserT ="insert into Employees  values("+Id+",'"+Name+"','"+Address+"','"+City+"',"+zip+","+phone+");";
                     PreparedStatement st = conn.prepareStatement(inserT);
                     st.execute();
