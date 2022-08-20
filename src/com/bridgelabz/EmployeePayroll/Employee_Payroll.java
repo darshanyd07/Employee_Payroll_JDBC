@@ -30,25 +30,30 @@ public class Employee_Payroll
                     System.out.println("Enter Employee Name ");
                     String Name = d.readLine();
 
-                    System.out.println("Enter Address ");
-                    String Address = d.readLine();
+                    System.out.println("Enter Age");
+                    int Age = Integer.parseInt(d.readLine());
+
+                    System.out.println("Enter Salary");
+                    int Salary = Integer.parseInt(d.readLine());
 
                     System.out.println("Enter City ");
                     String City = d.readLine();
 
+                    System.out.println("Enter DOB ");
+                    String DOB = d.readLine();
 
-                    System.out.println("Enter Zip-Code");
-                    int zip = Integer.parseInt(d.readLine());
+                    System.out.println("Enter State ");
+                    String State = d.readLine();
 
-                    System.out.println("Enter Phone Number");
-                    int phone = Integer.parseInt(d.readLine());
+                    System.out.println("Enter is_active Or Not ");
+                    int Check_Is_Active = Integer.parseInt(d.readLine());
 
                     System.out.println("Setting the AutoCommit value as FALSE");
                     conn.setAutoCommit(false);
                     boolean autoCommit = conn.getAutoCommit();
                     System.out.println("AutoCommit value of the Connection = "+ autoCommit);
 
-                    String inserT ="insert into Employees  values("+Id+",'"+Name+"','"+Address+"','"+City+"',"+zip+","+phone+");";
+                    String inserT ="insert into Employees  values("+Id+",'"+Name+"',"+Age+","+Salary+",'"+City+"',"+DOB+",'"+State+"',"+Check_Is_Active+");";
                     PreparedStatement st = conn.prepareStatement(inserT);
                     st.execute();
                     System.out.println("Employee "+Name+ "  Insert Records Successfully");
@@ -100,7 +105,7 @@ public class Employee_Payroll
                 {
                     System.out.println("Enter delete Employee  ID you want to delete ");
                     int del_id = Integer.parseInt(d.readLine());
-                    String delete = " delete from Employees where Id  = "+del_id+"";
+                    String delete = " update Employees  set is_active  = 0  where Id = " +del_id+";";
                     stmt.executeUpdate(delete);
                     System.out.println("Delete Employee Record Successfully");
                 }
@@ -110,6 +115,38 @@ public class Employee_Payroll
                 System.out.println("Ok Darsh....");
             }
 
+            System.out.println("You Want To Reterive Data ");
+            String checker = d.readLine();
+            if(checker.equals("yes"))
+            {
+                String table = d.readLine();
+                String sql = "select * from Employee where is_active = 1 ;";
+                ResultSet rs = stmt.executeQuery(sql);
+                System.out.println("Id   E_name   E_age   E_Salary    E_city");
+                System.out.println("-----------------------------");
+                while (rs.next())
+                {
+                    int eid = rs.getInt("Id");
+                    String ename = rs.getString("Name");
+                    int eage = rs.getInt("Age");
+                    Double esalary = rs.getDouble("Salary");
+                    String ecity = rs.getString("City");
+                    String Date = rs.getString("date_add");
+                    int is_acive = rs.getInt("is_active");
+
+
+                    System.out.println(+eid+"   "+ename+"   "+eage+"   " +esalary+  "    " +ecity+   "     "+Date+ "       "+is_acive  );
+                }
+                System.out.println("-----------------------------");
+                System.out.println("Display Table  Successfully");
+                System.out.println("-----------------------------");
+
+            }else
+            {
+                System.out.println("Ok Bye Darsh.......");
+            }
+
+
         }
         catch (Exception e)
         {
@@ -117,6 +154,7 @@ public class Employee_Payroll
         }
 
 
+        System.exit(0);
 
 
     }
